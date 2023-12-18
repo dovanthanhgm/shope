@@ -1,1 +1,7 @@
 __pycache__
+
+uploads/*
+emails/*
+!**/.gitkeep
+
+db.sqlite3
