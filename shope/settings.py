@@ -166,6 +166,7 @@ for lang in LANGUAGES:
 	if not os.path.exists(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES'): os.mkdir(BASE_DIR / 'locale' / lang[0] / 'LC_MESSAGES')
 
 AUTH_PASSWORD_VALIDATORS = []
+if not os.path.exists(BASE_DIR / 'templates'): os.mkdir('templates')
 TEMPLATES[0]['DIRS'] = [os.path.join(BASE_DIR, 'templates')]
 
 INSTALLED_APPS += []
