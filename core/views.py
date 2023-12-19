@@ -3,7 +3,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Product
+from .models import Product, CartItem
 
 
 class Login(View):
@@ -38,5 +38,13 @@ class Home(View):
         })
 
 class AddToCart(View):
-    def get(self, request):
-        return redirect('/')
+    def get(self, request, product_id):
+        product = Product.objects.get(id=product_id)
+        user = self.request.user
+        try:
+            cart_item = CartItem.objects.get(user=user, product=product)
+            cart_item.quantity = cart_item.quantity + 1
+            cart_item.save()
+        except:
+            CartItem.objects.create(user=user, product=product)
+        return redirect(reverse('home'))
