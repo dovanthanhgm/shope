@@ -37,4 +37,6 @@ class Home(View):
             
         })
 
-
+class AddToCart(View):
+    def get(self, request):
+        return redirect('/')

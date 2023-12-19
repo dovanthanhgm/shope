@@ -10,7 +10,9 @@
         <div class="menu-item">About</div>
     </div>
     <div class="right">
-        <div class="menu-item">{% translate 'XIN CHAO: ' %} {{ request.user }}</div>
+        {% if request.user.is_authenticated %}
+            <div class="menu-item">{% translate 'XIN CHAO: ' %} {{ request.user }}</div>
+        {% endif %}
         <div class="language">
             <form action="{% url 'set_language' %}" method="post" id="language_selection">
             {% csrf_token %}
@@ -28,9 +30,12 @@
             <input type="submit" id="submit_btn" hidden value="Go">
         </form> 
         </div>
-        <div class="menu-item">Cart</div>
-        <div class="menu-item"><a href="{% url 'login' %}">Login</a></div>
-        <div class="menu-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></div>
+        {% if request.user.is_authenticated %}
+            <div class="menu-item">Cart {{ request.user.cart_count }}</div>
+            <div class="menu-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></div>
+        {% else %}
+            <div class="menu-item"><a href="{% url 'login' %}">Login</a></div>
+        {% endif %}
     </div>
 </div>
 <div class="category-container">
@@ -69,10 +74,25 @@
     <div class="product">
         <img src="{{ product.image.url }}" alt="{{ product.name}}">
         <div class="product-info">
-            <h3>{{ product.name}}</h3>
-            <p class="price">{{ product.price }}</p>
+            <div class="pri-info">
+                <h3>{{ product.name}}</h3>
+                <p class="price">${{ product.price }}</p>
+            </div>
             <p>Type: {{ product.category.name }}</p>
-            <p>Description summary for Product 1.</p>
+            <p> {{ product.short_description }} </p>
+        </div>
+        <div class="action-container">
+            <table>
+                <tbody>
+                    <tr>
+                        <td style="width: 50%;"><a href=""><button class="btn-buy-action">Detail</button></a></td>
+                        <td><a href=""><button class="btn-buy-action">Add To Cart</button></a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><a href=""><button class="btn-buy-action">Buy</button></a></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     {% endfor %}
