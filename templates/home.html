@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% translate 'HOME_TITLE' %} {% endblock %}
+{% block content %}
+
+<div class="menu">
+    <div class="left">
+        <div class="logo"><a href="{% url 'home' %}">Logo</a></div>
+        <div class="menu-item"><a href="{% url 'home' %}">Home</a></div>
+        <div class="menu-item">About</div>
+    </div>
+    <div class="right">
+        <div class="menu-item">{% translate 'XIN CHAO: ' %} {{ request.user }}</div>
+        <div class="language">
+            <form action="{% url 'set_language' %}" method="post" id="language_selection">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ request.get_full_path }}">
+            <select name="language" >
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                    <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                        {{ language.name_local }} ({{ language.code }})
+                    </option>
+                {% endfor %}
+            </select>
+            <input type="submit" id="submit_btn" hidden value="Go">
+        </form> 
+        </div>
+        <div class="menu-item">Cart</div>
+        <div class="menu-item"><a href="{% url 'login' %}">Login</a></div>
+        <div class="menu-item"><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></div>
+    </div>
+</div>
+<div class="category-container">
+    <div class="category">
+        <img src="https://i.imgur.com/wwh00KA.png" alt="Category 1">
+        <p>Category 1</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Category 2">
+        <p>Category 2</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/2VmSbw5.png" alt="Category 3">
+        <p>Category 3</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/BQ5NFsk.png" alt="Category 4">
+        <p>Category 4</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/5OR5hKG.png" alt="Category 5">
+        <p>Category 5</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/0ZfwcPU.png" alt="Category 6">
+        <p>Category 6</p>
+    </div>
+    <div class="category">
+        <img src="https://i.imgur.com/rJBRcea.png" alt="Category 7">
+        <p>Category 7</p>
+    </div>
+    <!-- Thêm các category khác tương tự -->
+</div>
+<div class="product-container">
+    {% for product in products %}
+    <div class="product">
+        <img src="{{ product.image.url }}" alt="{{ product.name}}">
+        <div class="product-info">
+            <h3>{{ product.name}}</h3>
+            <p class="price">{{ product.price }}</p>
+            <p>Type: {{ product.category.name }}</p>
+            <p>Description summary for Product 1.</p>
+        </div>
+    </div>
+    {% endfor %}
+    <div class="product">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Product 1">
+        <div class="product-info">
+            <h3>Name of Product 1</h3>
+            <p class="price">$19.99</p>
+            <p>Type: Category 1</p>
+            <p>Description summary for Product 1.</p>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Product 2">
+        <div class="product-info">
+            <h3>Name of Product 2</h3>
+            <p class="price">$29.99</p>
+            <p>Type: Category 2</p>
+            <p>Description summary for Product 2.</p>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Product 3">
+        <div class="product-info">
+            <h3>Name of Product 3</h3>
+            <p class="price">$29.99</p>
+            <p>Type: Category 3</p>
+            <p>Description summary for Product 3.</p>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Product 4">
+        <div class="product-info">
+            <h3>Name of Product 4</h3>
+            <p class="price">$29.99</p>
+            <p>Type: Category 4</p>
+            <p>Description summary for Product 4.</p>
+        </div>
+    </div>
+    <div class="product">
+        <img src="https://i.imgur.com/DGoy7ny.png" alt="Product 5">
+        <div class="product-info">
+            <h3>Name of Product 5</h3>
+            <p class="price">$29.99</p>
+            <p>Type: Category 5</p>
+            <p>Description summary for Product 5.</p>
+        </div>
+    </div>
+    <!-- Thêm các sản phẩm khác tương tự -->
+</div>
+{% endblock %}
