@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %} {% translate 'PRODUCT' %} {% endblock %}
+{% block content %}
+<div class="add-to-cart">
+    <div class="product-more-info">
+        <img class="product_img_info" src="{{product.image}}" alt="product" id="mainImage">
+        <div class="variant-imgs">
+            {% for product_image in product_images %}
+            <div class="variant-img" onclick="changeMainImage('{{product_image.file.url}}')">
+                <img src="{{product_image.file.url}}" alt="product">
+            </div>
+            {% endfor %}
+            {% for variant_image in variant_images %}
+            <div class="variant-img" onclick="changeMainImage('{{variant_image.url}}')">
+                <img src="{{variant_image.url}}" alt="product">
+            </div>
+            {% endfor %}
+        </div>
+        <!-- <div class="info_detail">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, cupiditate, quod totam hic in nostrum dolore fuga explicabo laudantium dolorem nihil nemo provident? Ipsam inventore vel temporibus incidunt quas, maiores repellat fuga amet magni quidem minus delectus, aliquid porro perferendis laboriosam non repudiandae. Optio saepe velit amet. Fugit, temporibus quidem.
+        </div> -->
+    </div>
+    <div class="add_to_cart_action">
+        <div class="action-detail">
+            <h2 class="product-name-h1">
+                {{ product.name }}
+            </h2>
+            <form action="#" method="post">
+                <label for="size">Chọn size:</label><br>
+                <input type="radio" id="size-small" name="size" value="small">
+                <label for="size-small">Nhỏ</label>
+                <input type="radio" id="size-medium" name="size" value="medium">
+                <label for="size-medium">Trung bình</label>
+                <input type="radio" id="size-large" name="size" value="large">
+                <label for="size-large">Lớn</label><br><br>
+            
+                <label for="color">Chọn màu sắc:</label><br>
+                <input type="radio" id="color-red" name="color" value="red">
+                <label for="color-red">Đỏ</label>
+                <input type="radio" id="color-blue" name="color" value="blue">
+                <label for="color-blue">Xanh</label>
+                <input type="radio" id="color-green" name="color" value="green">
+                <label for="color-green">Xanh lá cây</label><br><br>
+            
+                <input type="submit" value="Gửi">
+            </form>
+            <div class="shop-info">
+                <div class="shop-image">
+                    <img src="{{ product.user.avatar.url }}" alt="product">
+                </div>
+                <div class="shop-info-detail">
+                    <h3 class="shop-name">{{ product.user }}</h3>
+                    <div> Sell: 999 produts </div>
+                    <div> Joined: 11/11/2011 </div>
+                </div>
+                <div class="shop-contact">
+                    <a href="">Messgage</a>
+                    <a href="">View Shop</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="product-info-detail">
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ea tempore, placeat vero debitis magnam ab quaerat dolores laborum quasi. Eligendi possimus iure optio aliquid non, a, saepe reiciendis error perspiciatis harum, sed qui alias officiis quod neque minima! Sint veniam totam asperiores consectetur omnis eius in dolor quisquam quam expedita beatae amet minima sapiente placeat dolorum repellendus tempore enim aliquid cum, unde quos dolores autem dolorem. Minus consectetur veritatis dignissimos pariatur maxime fugiat, dolorem ea, reprehenderit eligendi officia error facere iure, nihil nisi. Error libero quam consequatur inventore delectus at, officiis velit adipisci accusantium accusamus nisi possimus recusandae exercitationem nam harum officia consectetur soluta obcaecati vero! Officiis saepe velit, eligendi sint nostrum vero illum consectetur quia facere quasi reprehenderit in quisquam a hic? Ex quasi atque aliquid officia libero sit eos culpa nam impedit odit quos, blanditiis et, praesentium molestiae consequatur recusandae totam cupiditate esse animi eveniet nobis delectus est quod. Tenetur quia similique mollitia deleniti ipsa odio aliquid perferendis natus eos corrupti culpa officia incidunt aspernatur iste ullam itaque nam porro, tempora impedit necessitatibus architecto nemo quae quos ratione! Similique neque iste quos cum, perferendis minima suscipit, officia ea tempora eligendi dolorem, cupiditate iure ratione corporis culpa corrupti! Soluta mollitia omnis magnam necessitatibus sequi, temporibus, culpa vero nemo harum vitae aspernatur. Quae qui nulla incidunt aut quam dolore ea quia delectus culpa laboriosam veritatis, impedit alias voluptate fugit minus nostrum at illum, aliquam nam quidem molestias. Non esse deserunt soluta eos veritatis repudiandae earum vitae eaque ducimus magnam illum labore assumenda sint facilis accusamus inventore optio nam, nihil quo, atque et iste sit ea. Similique modi corrupti perferendis quam deserunt reprehenderit rem eveniet non qui debitis neque consectetur magnam harum accusantium, cupiditate vel et quisquam, explicabo veniam a labore, soluta unde. Alias corporis culpa, tenetur blanditiis sequi fugit veritatis dolores deserunt ab, molestiae consequuntur vero! Quo similique voluptate possimus? Tempora velit repellendus ratione voluptatibus ipsam eaque, dolore, iusto at numquam voluptatem nihil asperiores neque sit. Ipsa velit sit hic numquam cum vel perspiciatis laudantium. Quisquam totam rerum ipsam dolor consequuntur rem sit facere harum molestias et nam, illum debitis similique, cumque sunt non nihil? Minima provident ea iure facilis, eius necessitatibus exercitationem cupiditate laborum error possimus veniam laudantium, recusandae obcaecati vel voluptate, ad neque ipsam sapiente at quia cumque repellendus quibusdam! Tenetur suscipit cum consequatur. Delectus ad nemo, officia quibusdam illum dolores quam voluptate iste facere quaerat veritatis quas, in totam exercitationem ducimus. Iure dignissimos aperiam totam laboriosam, numquam necessitatibus cum? Reprehenderit suscipit saepe illum non rem totam nostrum dolorum voluptates consequatur modi necessitatibus esse at perspiciatis perferendis fugiat, sequi molestias consequuntur autem ducimus sapiente ex, quam, earum error porro. Asperiores nihil enim adipisci architecto deserunt facilis quia mollitia? In vero enim nostrum. Voluptatum, quae harum ipsum corporis eveniet et facilis debitis omnis earum impedit doloribus sit minus quia. Aliquid non debitis quia optio dicta sit illo, cupiditate aliquam harum explicabo recusandae veritatis nisi eos possimus quis. Sed necessitatibus molestiae quas nisi quia cumque sint veniam odit. Eaque, assumenda?
+    <h3>Related Product</h3>
+    <div class="related-product">
+        <div class="related-product-img">
+            <img src="https://i.imgur.com/DGoy7ny.png" alt="product">
+        </div>
+        <div class="related-product-img">
+            <img src="https://i.imgur.com/DGoy7ny.png" alt="product">
+        </div>
+        <div class="related-product-img">
+            <img src="https://i.imgur.com/DGoy7ny.png" alt="product">
+        </div>
+        <div class="related-product-img">
+            <img src="https://i.imgur.com/DGoy7ny.png" alt="product">
+        </div>
+    </div>
+</div>
+<script>
+    function changeMainImage(newImageUrl) {
+        var mainImage = document.getElementById('mainImage');
+        mainImage.src = newImageUrl;
+    }
+</script>
+{% endblock %}

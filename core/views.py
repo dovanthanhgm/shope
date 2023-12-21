@@ -3,7 +3,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.urls import reverse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Product, CartItem
+from .models import Product, CartItem, Category
 
 
 class Login(View):
@@ -32,14 +32,30 @@ class Logout(LoginRequiredMixin, View):
 
 class Home(View):
     def get(self, request):
+        products = Product.objects.all()
+        category_id = request.GET.get('category')
+        if category_id:
+            products = Product.objects.filter(category=Category.objects.get(id=category_id))
         return render(request, 'home.html', {
-            'products': Product.objects.all(),
-            
+            'products': products,
+            'categories': Category.objects.all()[:7],
         })
 
-class AddToCart(View):
+class AddToCart(LoginRequiredMixin, View):
     def get(self, request, product_id):
         product = Product.objects.get(id=product_id)
+        product_images = product.productimage_set.all()
+        if product.has_variant():
+            variants = product.variant_set.all()
+            variant_images = []
+            for variant in variants:
+                variant_images.append(variant.image)
+
+        return render(request, 'add_to_cart.html', {
+            'product': product,
+            'product_images': product_images,
+            'variant_images': variant_images
+        })
         user = self.request.user
         try:
             cart_item = CartItem.objects.get(user=user, product=product)
