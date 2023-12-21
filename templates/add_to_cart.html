@@ -27,28 +27,21 @@
                 {{ product.name }}
             </h2>
             <form action="#" method="post">
-                <label for="size">Chọn size:</label><br>
-                <input type="radio" id="size-small" name="size" value="small">
-                <label for="size-small">Nhỏ</label>
-                <input type="radio" id="size-medium" name="size" value="medium">
-                <label for="size-medium">Trung bình</label>
-                <input type="radio" id="size-large" name="size" value="large">
-                <label for="size-large">Lớn</label><br><br>
-            
-                <label for="color">Chọn màu sắc:</label><br>
-                <input type="radio" id="color-red" name="color" value="red">
-                <label for="color-red">Đỏ</label>
-                <input type="radio" id="color-blue" name="color" value="blue">
-                <label for="color-blue">Xanh</label>
-                <input type="radio" id="color-green" name="color" value="green">
-                <label for="color-green">Xanh lá cây</label><br><br>
-            
+                {% for attribute, values in attributes.items %}
+                    <label for="size">Chọn {{attribute}}:</label><br>
+                    {% for value in values %}
+                    <input type="radio" id="{{attribute}}-{{value}}" name="{{attribute}}" value="{{value}}">
+                    <label for="{{attribute}}-{{value}}">{{value}}</label>
+                    {% endfor %}
+                    <br><br>
+                {% endfor %}
                 <input type="submit" value="Gửi">
             </form>
             <div class="shop-info">
                 <div class="shop-image">
-                    <img src="{{ product.user.avatar.url }}" alt="product">
+                    <img src="{% if product.user.avatar %}{{ product.user.avatar.url }}{%else%}https://i.imgur.com/hepj9ZS.png{%endif%}" alt="product">
                 </div>
+                
                 <div class="shop-info-detail">
                     <h3 class="shop-name">{{ product.user }}</h3>
                     <div> Sell: 999 produts </div>

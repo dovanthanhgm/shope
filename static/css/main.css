@@ -88,6 +88,7 @@ a {
 
 .product-info h3 {
     font-weight: bold;
+    font-size: 16px;
 }
 
 .pri-info h3{
@@ -194,7 +195,13 @@ a {
 .variant-img {
     border: 1px solid black;
     margin: 2px 0;
+    cursor: pointer;
+    overflow: hidden; 
+}
 
+.variant-img img:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
 }
 
 .variant-img img {

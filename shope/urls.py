@@ -27,6 +27,9 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns
 
+from core.views import Home as index
+urlpatterns += [path('',index.as_view(),name='index')]
+
 urlpatterns += [
     path('i18n/', include('django.conf.urls.i18n')),
 ]

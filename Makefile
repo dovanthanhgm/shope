@@ -20,4 +20,4 @@ up:
 	python manage.py shell -c "from django.contrib.auth import get_user_model; \
 		get_user_model().objects.filter(username='admin').exists() or \
 		get_user_model().objects.create_superuser('admin', 'admin@admin.com', 'admin')"
-	python manage.py runserver 8000
+	python manage.py runserver 2000

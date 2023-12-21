@@ -45,16 +45,25 @@ class AddToCart(LoginRequiredMixin, View):
     def get(self, request, product_id):
         product = Product.objects.get(id=product_id)
         product_images = product.productimage_set.all()
+        variant_images = []
+        attributes = {}
         if product.has_variant():
             variants = product.variant_set.all()
-            variant_images = []
             for variant in variants:
                 variant_images.append(variant.image)
+                name = variant.attribute_name
+                value = variant.attribute_value
+                if name not in attributes:
+                    attributes[name] = []
+                attributes[name].append(value)
+        print(attributes)
+
 
         return render(request, 'add_to_cart.html', {
             'product': product,
             'product_images': product_images,
-            'variant_images': variant_images
+            'variant_images': variant_images,
+            'attributes': attributes
         })
         user = self.request.user
         try:

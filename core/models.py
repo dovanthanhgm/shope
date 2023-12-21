@@ -45,7 +45,8 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
+    name = models.CharField(max_length=54, null=True, blank=True)
+    full_name = models.CharField(max_length=100, null=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     price = models.FloatField(null=True, blank=True)
     short_description = models.TextField(null=True, blank=True)
@@ -57,19 +58,18 @@ class Product(models.Model):
     def image(self):
         products = ProductImage.objects.all()
         return products[0].file.url
+    def __str__(self):
+        return self.name
 
 class ProductImage(models.Model):
     file = models.ImageField(upload_to='product_image', null=True, blank=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
 
-class Attribute(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
-    value = models.CharField(max_length=100, null=True, blank=True)
-
 class Variant(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)
-    attribute = models.ForeignKey(Attribute, on_delete=models.CASCADE, null=True, blank=True)
     image = models.ImageField(upload_to='variant_image', null=True, blank=True)
+    attribute_name = models.CharField(max_length=100, null=True, blank=True)
+    attribute_value = models.CharField(max_length=100, null=True, blank=True)
 
 class CartItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True)

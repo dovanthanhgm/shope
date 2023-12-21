@@ -126,6 +126,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 import os
 from django.utils.translation import gettext_lazy as _
 
+ALLOWED_HOSTS = ['*']
+
 if not os.path.exists(BASE_DIR/'static'): os.mkdir('static')
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]
