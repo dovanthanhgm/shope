@@ -90,9 +90,16 @@ a {
     font-weight: bold;
 }
 
-.pri-info {
-    display: flex;
-    justify-content: space-between;
+.pri-info h3{
+    height: 60px;
+}
+
+.sec-info {
+    height: 40px;
+}
+
+.sec-info p {
+    margin: 0;
 }
 
 .price {
@@ -118,4 +125,128 @@ a {
     all: unset;
     width: 100%;
     height: 40px;
+}
+
+.cart-count {
+    color: red;
+    border: 1px solid red;
+    padding: 0 3px;
+}
+
+.category-title {
+    width: calc(100% - 2px);
+    display: flex;
+    justify-content: space-between;
+    line-height: 40px;
+    height: 40px;
+    
+    border: 1px solid black;
+    border-top: none;
+    border-bottom: none;
+}
+
+.category-title h3 {
+    padding: 0;
+    margin: 0;
+}
+
+.category-title h3, .category-title a {
+    margin: 0 1rem;
+}
+
+.add-to-cart {
+    border: 1px solid black;
+    border-top: none;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(100%/3), 1fr));
+    gap: 10px;
+    /* padding: 10px; */
+}
+
+.product-more-info {
+    border-right: 1px solid black;
+    text-align: center;
+}
+
+.product-more-info .product_img_info {
+    border: 1px solid black;
+    width: 75%;
+    margin: 1rem 0;
+}
+
+.add_to_cart_action .action-detail {
+    width: 100%;
+}
+
+.action-detail form {
+    height: 250px;
+}
+
+.variant-imgs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(100%/7), 1fr));
+    gap: 2px;
+    margin: 0 2px;
+}
+
+.variant-img {
+    border: 1px solid black;
+    margin: 2px 0;
+
+}
+
+.variant-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.related-product {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(100%/5), 1fr));
+    gap: 10px;
+}
+
+.related-product-img {
+    border: 1px solid black;
+    margin: 0 4px;
+}
+
+.related-product-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-info-detail {
+    border: 1px solid black;
+}
+
+.shop-info {
+    margin: 10px 5px 10px 0;
+    display: flex;
+    border: 1px solid black;
+    padding: 5px;
+    justify-content: space-between;
+}
+
+.shop-image {
+    border: 1px solid black;
+}
+
+.shop-image img {
+    width: 100px;
+    height: 100px;
+}
+
+.shop-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5px;
+}
+
+.shop-contact a{
+    padding: 10px;
+    border: 1px solid black;
 }
